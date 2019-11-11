@@ -33,8 +33,8 @@ VOLUME /datak
 
 RUN set -x \
     && sed -i -e 's/^root::/root:*:/' /etc/shadow \
-RUN apt-get update && \
-    apt-get install --no-install-recommends -yqq \
+    && apt-get update \
+    && apt-get install --no-install-recommends -yqq \
 # Install Essentials
     build-essential git curl netcat tcpdump libcap2-bin supervisor virtualenv python-dev libpq-dev python-magic libffi-dev libssl-dev libjpeg-dev zlib1g-dev \
 # Install M2Crypto dependecies
