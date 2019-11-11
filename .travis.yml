@@ -1,0 +1,21 @@
+  
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - IMAGE_NAME=redoracle/cuckoo
+
+before_script:
+  - docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+
+script:
+  - docker build -t "${IMAGE_NAME}:latest" .
+
+after_script:
+
+deploy:
+  provider: script
+  script: docker push "${IMAGE_NAME}:latest"
+  on:
+    branch: master
